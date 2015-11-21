@@ -1,4 +1,4 @@
-## Together these function provide a way to cache the inverse of matrix to avoid recomputing the inverse repeatedly.
+## A mechanism for caching the inverse of matrix to subsequently avoid recomputing the inverse repeatedly.
 ## Usage:
 ## m <- matrix(c(2,3,4,5,6,7,8,9,1),nrow=3,ncol=3)
 ## cm <- makeCacheMatrix(m)
@@ -19,11 +19,9 @@ makeCacheMatrix <- function(x = matrix()) {
     list(setmatrix = setmatrix, getmatrix  = getmatrix, setinverse = setinverse, getinverse = getinverse)
 }
 
-## cacheSolve - A function to provide access to a cached matrix or to create a cached matrix if one does not exist.
+## cacheSolve - A function to provide access to an cached inverse matrix or to create a cached inverse matrix if it does not exist.
 
 cacheSolve <- function(x, ...) {
-    ## Return a matrix that is the inverse of 'x'
-    
     inverse <- x$getinverse()
     if( !is.null(inverse) ) {
         message("Getting cached matrix")
